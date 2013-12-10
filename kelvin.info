@@ -1,0 +1,13 @@
+name = kelvin
+description = kelvin's start theme
+screenshot = screenshot.png
+core = 7.x
+
+regions[header] = Header
+regions[content] = Content
+regions[footer] = Footer
+
+; ===== DON'T TOUCH =====
+regions[help] = Help
+regions[page_top] = Page top
+regions[page_bottom] = Page bottom
