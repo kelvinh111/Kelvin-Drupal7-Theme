@@ -1,0 +1,24 @@
+// vars
+$d: 0.5s;
+
+// mixins
+@mixin transition($property:all, $duration:$d, $timing:"", $delay:"") {
+  @include transition-property($property);
+  @include transition-duration($duration);
+
+  @if $timing != "" {
+    @include transition-timing-function($timing);
+  }
+  @if $delay != "" {
+    @include transition-delay($delay);
+  }
+}
+
+@mixin bg-gradient ($start, $end) {
+  @include background-image(linear-gradient($start, $end));
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="#{$start}", EndColorStr="#{$end}");
+}
+
+@mixin wysiwyg {
+  
+}

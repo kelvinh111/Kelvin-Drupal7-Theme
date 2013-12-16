@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Default theme implementation to display a single Drupal page.
@@ -67,10 +66,15 @@
  * @see template_preprocess_page()
  * @see template_process()
  */
+if ($is_front) {
+  $title = ''; // This is optional ... it removes the default Welcome to @site-name
+  $GLOBALS['conf']['cache'] = FALSE;
+  $page['content']['system_main']['default_message'] = array(); // This will remove the 'No front page content has been created yet.'
+}
 ?>
 
 <div id="page">
-  
+
   <?php if ($logo || $site_name || $site_slogan || $page['header']): ?>
     <header id="header" role="banner">
       <?php if ($logo): ?>
@@ -78,25 +82,13 @@
           <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
         </a>
       <?php endif; ?>
-
-      <?php if ($site_name): ?>
-          <h1 id="site-name">
-            <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-          </h1>
-      <?php endif; ?>
-
-      <?php if ($site_slogan): ?>
-        <div id="site-slogan"><?php print $site_slogan; ?></div>
-      <?php endif; ?>
-
       <?php print render($page['header']); ?>
+      <?php if ($main_menu_links): ?>
+        <nav id="main-menu" role="navigation">
+          <?php print $main_menu_links; ?>
+        </nav><!-- /#main-menu -->
+      <?php endif; ?>
     </header><!-- /#header -->
-  <?php endif; ?>
-  
-  <?php if ($main_menu_links): ?>
-    <nav id="main-menu" role="navigation">
-      <?php print $main_menu_links; ?>
-    </nav><!-- /#main-menu -->
   <?php endif; ?>
 
   <div id="main">
@@ -117,7 +109,6 @@
     <?php print render($page['content_top']); ?>
     <?php print render($page['content']); ?>
     <?php print render($page['content_bottom']); ?>
-
   </div><!-- /#main -->
 
   <?php if ($page['footer']): ?>

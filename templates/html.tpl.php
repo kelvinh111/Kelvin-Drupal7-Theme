@@ -48,21 +48,8 @@
     $theme_path = "/" . drupal_get_path('theme', $theme);
     print $styles;
     ?>
-    <link rel="stylesheet/less" type="text/css" href="<?php echo $theme_path; ?>/css/sitewide.less" />
-    <script type="text/javascript">
-      less = {
-        env: "development", // or "production"
-        async: true, // load imports async
-        fileAsync: true, // load imports async when in a page under a file protocol
-        poll: 1000, // when in watch mode, time in ms between polls
-        functions: {}, // user functions, keyed by name
-        dumpLineNumbers: "comments", // or "mediaQuery" or "all"
-        relativeUrls: true, // whether to adjust url's to be relative if false, url's are already relative to the entry less file
-        rootpath: "<?php echo $theme_path; ?>/css/"// a path to add on to the start of every url resource
-      };
-    </script>
-    <script src="<?php echo $theme_path; ?>/js/less-1.5.0.min.js"></script>
     <script src="<?php echo $theme_path; ?>/js/modernizr-2.6.2.min.js"></script>
+    <link href="<?php echo $theme_path; ?>/css/sitewide.css" rel='stylesheet' type='text/css'>
   </head>
   <body class="<?php print $classes; ?>" <?php print $attributes; ?>>
     <!--[if lt IE 7]>
@@ -77,6 +64,7 @@
     <script>window.jQuery || document.write('<script src="<?php echo $theme_path; ?>/js/jquery-1.10.2.min.js"><\/script>')</script>
     <script src="<?php echo $theme_path; ?>/js/jquery-migrate-1.2.1.js"></script>
     <?php print $scripts; ?>
+    <script src="<?php echo $theme_path; ?>/js/cssrefresh.js"></script>
     <script src="<?php echo $theme_path; ?>/js/hasChanged.js"></script>
     <script src="<?php echo $theme_path; ?>/js/script.js"></script>
   </body>
