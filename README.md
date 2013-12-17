@@ -12,7 +12,7 @@ Using
 
 NOT using
 -----
-  - .info to load external css & js, just simply add into html.tpl.php
+  - .info to load external css & js, just simply add them into html.tpl.php
   - base-theme
   - theme-settings.php for backend panel
   - too many regions
@@ -26,7 +26,7 @@ Notes
 -----
   - Edit config.rb for the SCSS & Compass compilation setting.
   - If you wanna use grid, I'd prefer [Compass's Blueprint Grid](http://compass-style.org/reference/blueprint/grid/).
-  - Not so many files/code, you may spend some time going through them and then you can figure out wht's going on... or [hit me a mail](kelvinhung.general@gmail.com).
+  - Not so many files/code, you may spend some time going through them and then you can figure out wht's going on... or hit me a mail.
 
 Useful resources
 -----
