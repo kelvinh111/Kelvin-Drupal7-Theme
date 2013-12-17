@@ -16,7 +16,6 @@ NOT using
   - base-theme
   - theme-settings.php for backend panel
   - too many regions
-  - too many preset feature which may be useless
 
 Usage
 -----
