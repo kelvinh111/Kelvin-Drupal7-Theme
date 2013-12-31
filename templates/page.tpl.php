@@ -75,7 +75,7 @@ if ($is_front) {
 
 <div id="page">
 
-  <?php if ($logo || $site_name || $site_slogan || $page['header']): ?>
+  <?php if ($logo || $page['header']): ?>
     <header id="header" role="banner">
       <?php if ($logo): ?>
         <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
@@ -83,7 +83,8 @@ if ($is_front) {
         </a>
       <?php endif; ?>
       <?php print render($page['header']); ?>
-      <?php if ($main_menu_links): ?>
+      <?php // remove this if you use menu block & put main-menu into the header section
+      if ($main_menu_links): ?>
         <nav id="main-menu" role="navigation">
           <?php print $main_menu_links; ?>
         </nav><!-- /#main-menu -->

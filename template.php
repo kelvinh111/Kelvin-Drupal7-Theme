@@ -217,3 +217,11 @@ function kelvin_breadcrumb($vars) {
 function kelvin_js_alter(&$javascript) {
   unset($javascript['misc/jquery.js']);
 }
+
+/**
+ * Unset Drupal's annoying preset css
+ */
+function kelvin_css_alter(&$style) {
+  unset($style['modules/system/system.theme.css']);
+  unset($style['modules/system/system.menus.css']);
+}

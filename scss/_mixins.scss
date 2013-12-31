@@ -1,24 +1,36 @@
 // vars
 $d: 0.5s;
 
+$page-width: 1120px;
+$blueprint-grid-columns: 12;
+$blueprint-grid-width: 75px;
+$blueprint-grid-margin: 20px;
+
+
+
 // mixins
 @mixin transition($property:all, $duration:$d, $timing:"", $delay:"") {
   @include transition-property($property);
   @include transition-duration($duration);
 
   @if $timing != "" {
-    @include transition-timing-function($timing);
+    @include transition-timing-function(ease-in-out);
   }
   @if $delay != "" {
     @include transition-delay($delay);
   }
 }
 
-@mixin bg-gradient ($start, $end) {
-  @include background-image(linear-gradient($start, $end));
+@mixin bg-gradient ($start, $end, $img:"") {
+  @if $img == "" {
+    @include background(linear-gradient($start, $end));
+  }
+  @else {
+    @include background(url($img), linear-gradient($start, $end));
+  }
   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="#{$start}", EndColorStr="#{$end}");
 }
 
 @mixin wysiwyg {
-  
+
 }

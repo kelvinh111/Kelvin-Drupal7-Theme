@@ -49,6 +49,7 @@
     print $styles;
     ?>
     <script src="<?php echo $theme_path; ?>/js/modernizr-2.6.2.min.js"></script>
+    <link href="<?php echo $theme_path; ?>/css/reset.css" rel='stylesheet' type='text/css'>
     <link href="<?php echo $theme_path; ?>/css/sitewide.css" rel='stylesheet' type='text/css'>
   </head>
   <body class="<?php print $classes; ?>" <?php print $attributes; ?>>
