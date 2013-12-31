@@ -1,4 +1,4 @@
-Kelvin Theme
+Kelvin Drupal7 Theme
 =========
 
 This is a very clean theme for [Drupal 7](https://drupal.org).
