@@ -18,7 +18,8 @@ firesass = true
 
 # Location of the theme's resources.
 css_dir         = "css"
-sass_dir        = "scss"
+sass_dir        = "sass"
+extensions_dir  = "sass-extensions"
 images_dir      = "images"
 javascripts_dir = "js"
 
@@ -32,7 +33,6 @@ javascripts_dir = "js"
 #add_import_path "../../../default/modules/FOO"
 #add_import_path "../../../all/modules/FOO"
 #add_import_path "../../../../modules/FOO"
-#add_import_path "styles/partials"
 
 
 ##
@@ -53,4 +53,5 @@ relative_assets = true
 
 # Pass options to sass. For development, we turn on the FireSass-compatible
 # debug_info if the firesass config variable above is true.
-sass_options = (environment == :development && firesass == true) ? {:debug_info => true} : {}
+#sass_options = (environment == :development && firesass == true) ? {:debug_info => true} : {}
+sass_options = {:sourcemap => true}

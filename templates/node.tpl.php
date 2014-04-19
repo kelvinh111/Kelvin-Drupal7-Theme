@@ -80,24 +80,13 @@
     
   <?php if ($user_picture || !$page || $display_submitted): ?>
     <header>
-      <?php print $user_picture; ?>
 
       <?php print render($title_prefix); ?>
       <?php if (!$page): ?>
         <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
       <?php endif; ?>
       <?php print render($title_suffix); ?>
-
-      <?php if ($display_submitted): ?>
         
-      <p class="submitted">
-        <?php print $submitted; ?>
-        <time pubdate datetime="<?php print $submitted_pubdate; ?>">
-        <?php print $submitted_date; ?>
-        </time>
-      </p>
-        
-      <?php endif; ?>
     </header>
   <?php endif; ?>
 

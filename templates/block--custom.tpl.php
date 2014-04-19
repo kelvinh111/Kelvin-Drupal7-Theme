@@ -39,31 +39,30 @@
  * @see template_preprocess_block()
  * @see template_process()
  */
-if (is_numeric($block->delta)) {
-  if (!empty($block->title)) {
-    $suffix = to_id($block->title);
-  } else if (!empty($block->info)) {
-    $suffix = to_id($block->info);
-  } else {
-    $suffix = $block->delta;
-  }
-  $block_html_id = "block-$block->module-$suffix";
+$block = $variables['elements']['#block'];
+$arr = isset($block->arr) ? $block->arr : "";
+$type = isset($block->type) ? $block->type : "";
+$subtype = isset($block->subtype) ? $block->subtype : "";
+$title = isset($block->title) ? $block->title : "";
+if (is_array($arr)) {
+  recursive_unset($arr, "#children");
+  recursive_unset($arr, "#printed");
 }
-$block_html_id = to_id($block_html_id);
 ?>
-<?php $tag = $block->subject ? 'section' : 'div'; ?>
-<<?php print $tag; ?> id="<?php print $block_html_id; ?>" class="<?php print $classes; ?>"<?php print $attributes; ?>>
 
-<?php
-print render($title_prefix);
-if ($block->subject) {
-  print "<h2 $title_attributes>$block->subject</h2>";
-}
-print render($title_suffix);
-?>
+<?php $tag = $block->subject ? 'section' : 'div'; ?>
+<<?php print $tag; ?> id="<?php print $block_html_id; ?>" class="<?php print $type . " " . $subtype . " " . $classes; ?>"<?php print $attributes; ?>>
+
+<?php print render($title_prefix); ?>
+<?php if ($block->subject): ?>
+  <h2<?php print $title_attributes; ?>><?php print $block->subject ?></h2>
+<?php endif; ?>
+<?php print render($title_suffix); ?>
 
 <div class="content"<?php print $content_attributes; ?>>
-  <?php print $content ?>
+<?php if ($type == "logo"): ?>
+
+<?php endif; ?>
 </div><!-- /.content -->
 
 </<?php print $tag; ?>><!-- /.block -->

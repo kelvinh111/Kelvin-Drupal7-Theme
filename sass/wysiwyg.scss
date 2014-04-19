@@ -1,0 +1,16 @@
+@charset "UTF-8";
+@import "import";
+
+body.cke_show_borders {
+  @include nested-reset;
+  font: normal 14px/21px $sans;
+  -webkit-font-smoothing: antialiased;
+  * {
+    @include box-sizing(border-box);
+  }
+  a {
+    text-decoration: none;
+    @include transition();
+  }
+  @include wysiwyg;
+}

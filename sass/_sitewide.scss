@@ -1,0 +1,50 @@
+@charset "UTF-8";
+//
+// Global
+//
+* {
+  @include box-sizing(border-box); 
+}
+html {
+  font: normal 12px/17px $sans;
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+  -moz-osx-font-smoothing: grayscale; 
+  width: 100%;
+  height: 100%;
+}
+body {
+  min-width: $page-width;
+}
+a {
+  @include transition();
+  text-decoration: none;
+  color: inherit;
+  &:active {
+    outline: none;
+  }
+  &:focus {
+    -moz-outline-style: none;
+  }
+}
+strong {
+  font-weight: bold;
+}
+button, input:not([type]), input[type="color"], input[type="email"], input[type="number"], input[type="password"], input[type="tel"], input[type="url"], input[type="text"], input[type='button'], input[type='submit'], textarea {
+  -webkit-appearance:none;
+  @include border-radius(0);
+}
+button, input[type='button'], input[type='submit'] {
+  cursor: pointer;
+}
+.hidden {
+  display: none;
+}
+.clearfix {
+  zoom: 1;
+  &:before { content: ''; display: block; }
+  &:after { content: ''; display: table; clear: both; }
+}
+#admin-menu {
+  z-index: 9999;
+}

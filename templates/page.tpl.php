@@ -66,56 +66,115 @@
  * @see template_preprocess_page()
  * @see template_process()
  */
+global $language;
+$lang = $language->language;
 if ($is_front) {
   $title = ''; // This is optional ... it removes the default Welcome to @site-name
   $GLOBALS['conf']['cache'] = FALSE;
   $page['content']['system_main']['default_message'] = array(); // This will remove the 'No front page content has been created yet.'
 }
+$page_type = "";
+$node_type = "";
+if (arg(0) == 'node') {
+  $node = node_load(arg(1));
+  $page_type = "node";
+  $node_type = $node->type;
+} elseif ($term = menu_get_object('taxonomy_term', 2)) {
+  $page_type = "term";
+} elseif (arg(0) == 'user') {
+  $page_type = "user";
+} else {
+  $page_type = "other";
+}
+
+if ($node_type == "article") {
+  $section_tid = $node->field_section[LANGUAGE_NONE][0]['tid'];
+  $section_alias = drupal_lookup_path('alias', 'taxonomy/term/' . $section_tid);
+}
 ?>
-
 <div id="page">
-
-  <?php if ($logo || $page['header']): ?>
-    <header id="header" role="banner">
-      <?php if ($logo): ?>
-        <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
-          <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-        </a>
-      <?php endif; ?>
-      <?php print render($page['header']); ?>
-      <?php // remove this if you use menu block & put main-menu into the header section
-      if ($main_menu_links): ?>
-        <nav id="main-menu" role="navigation">
-          <?php print $main_menu_links; ?>
-        </nav><!-- /#main-menu -->
-      <?php endif; ?>
-    </header><!-- /#header -->
-  <?php endif; ?>
-
+  <header id="header" role="banner">
+    <div id="header-wrapper" class="wrapper">      
+      <?php
+      $html = render($page['header']);
+      print $html;
+      ?>
+    </div> 
+  </header><!-- /#header -->
   <div id="main">
-    <?php print render($title_prefix); ?>
-    <?php if ($title): ?>
-      <h1 class="title" id="page-title"><?php print $title; ?></h1>
-    <?php endif; ?>
-    <?php print render($title_suffix); ?>
-    <?php if ($tabs): ?>
-      <div class="tabs"><?php print render($tabs); ?></div>
-    <?php endif; ?>
-    <?php print $messages; ?>
-    <?php print render($page['help']); ?>
-    <?php if ($action_links): ?>
-      <ul class="action-links"><?php print render($action_links); ?></ul>
-    <?php endif; ?>
-
-    <?php print render($page['content_top']); ?>
-    <?php print render($page['content']); ?>
-    <?php print render($page['content_bottom']); ?>
+    <div id="cat">
+      <div id="cat-wrapper" class="wrapper">
+        <?php
+        if ($page_type == "node") {
+          if ($node_type == "page") {
+            print '<a href="#" class="back" title="back"></a><h3>';
+            if (isset($node->field_smaller_title) && count($node->field_smaller_title)) {
+              print $node->field_smaller_title[LANGUAGE_NONE][0]['safe_value'];
+            } else {
+              print $title;
+            }
+            print "</h3>";
+          } elseif ($node_type == "article") {
+            print "<h3><a href='/$section_alias'>" . $node->field_section[LANGUAGE_NONE][0]['taxonomy_term']->name . "</a></h3><a class='section-prev'></a><a class='section-next'></a>";
+          } else {
+            print $title;
+          }
+        } elseif ($page_type == "user") {
+          print '<a href="#" class="back" title="back"></a><h3>Account</h3>';
+        }
+        ?>
+      </div>
+    </div>
+    <div id="system">
+      <div id="system-wrapper" class="wrapper">
+        <?php if ($tabs): ?>
+          <div class="admin-tabs"><?php print render($tabs); ?></div>
+        <?php endif; ?>
+        <?php print $messages; ?>
+        <?php print render($page['help']); ?>
+        <?php if ($action_links): ?>
+          <ul class="action-links"><?php print render($action_links); ?></ul>
+        <?php endif; ?>
+      </div>
+    </div>
+    <div id = "main-wrapper" class = "wrapper">
+      <?php
+      if ($node_type == "article") {
+        print "<div id='swiper-container'><div class='swiper-wrapper'>
+    <div class='swiper-slide'>";
+      }
+      ?>
+      <?php print render($title_prefix);
+      ?>
+      <?php if ($title): ?>
+        <h1 class="title" id="page-title">
+          <?php
+          if ($page_type == "node") {
+            if (isset($node->field_bigger_title) && count($node->field_bigger_title)) {
+              print $node->field_bigger_title[LANGUAGE_NONE][0]['safe_value'];
+            } else {
+              print $title;
+            }
+          } else {
+            print $title;
+          }
+          ?>
+        </h1>
+      <?php endif; ?>
+      <?php print render($title_suffix); ?>
+      <?php print render($page['content_top']); ?>
+      <?php print render($page['content']); ?>
+      <?php print render($page['content_bottom']); ?>
+      <?php
+      print "</div> </div> </div>";
+      ?>
+    </div>
   </div><!-- /#main -->
 
-  <?php if ($page['footer']): ?>
-    <footer id="footer" role="contentinfo">
+  <footer id="footer" role="contentinfo">
+    <footer id="footer-wrapper" class="wrapper">
       <?php print render($page['footer']); ?>
-    </footer><!-- /#footer -->
-  <?php endif; ?>
-
+      <div id="footer-copy"><a href="https://www.redflaggroup.com" target="_blank" title="The Red Flag Group"><img src="/sites/all/themes/ci/images/rfg_logo.png" /></a><?php print t("Compliance Insider® copyright © 2013 by The Red Flag Group. All rights reserved. No part of this publication may be reproduced or transmitted in any form or by any means, electronic or mechanical, including photocopy, recording, or any information storage and retrieval system, without the express written consent of the copyright holders. Your use of this website constitutes acceptance of The Red Flag Group’s Privacy Policy and Terms & Conditions. The information in Compliance Insider® is strictly for educational purposes only and does not constitute legal advice."); ?></div>
+    </footer>
+  </footer><!-- /#footer -->
 </div><!-- /#page -->

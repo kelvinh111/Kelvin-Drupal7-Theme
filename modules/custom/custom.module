@@ -1,0 +1,41 @@
+<?php
+
+require_once "phpQuery-onefile.php";
+require_once "helper.php";
+
+function custom_menu() {
+  $items['test'] = array(
+    'page callback' => 'custom_test_callback',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * return theme() function to pass all vars to hook_theme() below
+ */
+function custom_test_callback() {
+  return "";
+}
+
+function custom_block_info() {
+  $blocks['test'] = array(
+    'info' => t('Testing block'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+
+function custom_block_view($delta = '') {
+  $block = array ();
+  $block["content"] = " ";
+  switch ($delta) {
+  case "test":
+    $block["type"] = "test";
+    $block["title"] = t("Testing block");
+    $block["arr"] = array();
+    break;
+  }
+  return $block;
+}

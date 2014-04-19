@@ -39,18 +39,23 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
+    <!--
+
+    by Kelvin
+
+    -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title><?php print $head_title; ?></title>
     <?php
     global $theme;
     $theme_path = "/" . drupal_get_path('theme', $theme);
+    $libraries_path = "/" . libraries_get_path('mediaelement');
     print $styles;
     ?>
     <script src="<?php echo $theme_path; ?>/js/modernizr-2.6.2.min.js"></script>
-    <link href="<?php echo $theme_path; ?>/css/reset.css" rel='stylesheet' type='text/css'>
-    <link href="<?php echo $theme_path; ?>/css/sitewide.css" rel='stylesheet' type='text/css'>
+    <link href="<?php echo $theme_path; ?>/css/all.css" rel='stylesheet' type='text/css'>
   </head>
   <body class="<?php print $classes; ?>" <?php print $attributes; ?>>
     <!--[if lt IE 7]>
@@ -58,16 +63,20 @@
     <![endif]-->
     <?php
     print $page_top;
-    print $page;
+    $classes_arr = explode(" ", $classes);
+    $doc = phpQuery::newDocumentHTML($page);
+    print $doc->html();
+    phpQuery::unloadDocuments();
     print $page_bottom;
     ?>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="<?php echo $theme_path; ?>/js/jquery-1.10.2.min.js"><\/script>')</script>
     <script src="<?php echo $theme_path; ?>/js/jquery-migrate-1.2.1.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <?php print $scripts; ?>
-    <script src="<?php echo $theme_path; ?>/js/cssrefresh.js"></script>
+    <script src="<?php echo $theme_path; ?>/js/cssrefresh.js"></script> 
     <script src="<?php echo $theme_path; ?>/js/hasChanged.js"></script>
     <script src="<?php echo $theme_path; ?>/js/script.js"></script>
   </body>
 </html>
-
