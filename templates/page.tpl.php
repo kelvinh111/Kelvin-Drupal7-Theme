@@ -90,7 +90,7 @@ if ($is_front) {
       <?php endif; ?>
     </div>
     <?php if ($title): ?>
-      <?php print render($title_prefix);
+      <?php print render($title_prefix); ?>
       <h1 class="title" id="page-title">
         <?php print $title; ?>
       </h1>
