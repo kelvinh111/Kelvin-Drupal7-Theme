@@ -1,7 +1,7 @@
 <?php
 
-require_once "phpQuery-onefile.php";
-require_once "helper.php";
+require_once(path_to_theme() . "/phpQuery-onefile.php");
+require_once(path_to_theme() . "/kelvin_helper.php");
 
 function custom_menu() {
   $items['test'] = array(
