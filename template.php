@@ -65,7 +65,6 @@ function kelvin_preprocess_html(&$vars) {
  * Implements template_preprocess_page().
  */
 function kelvin_preprocess_page(&$vars) {
-
     if (isset($vars['node_title'])) {
         $vars['title'] = $vars['node_title'];
     }
@@ -118,9 +117,6 @@ function kelvin_preprocess_page(&$vars) {
         // Make sure the shortcut link is the first item in title_suffix.
         $vars['title_suffix']['add_or_remove_shortcut']['#weight'] = -100;
     }
-    if (isset($vars['node'])) {
-        $vars['theme_hook_suggestions'][] = 'page__' . $vars['node']->type;
-    }
 }
 
 /**
@@ -157,6 +153,11 @@ function kelvin_preprocess_node(&$vars) {
   $vars['submitted'] = t('Submitted by !username on ', array('!username' => $vars['name']));
   $vars['submitted_date'] = t('!datetime', array('!datetime' => $vars['date']));
   $vars['submitted_pubdate'] = format_date($vars['created'], 'custom', 'Y-m-d\TH:i:s');
+
+  $type = $vars['node']->type;
+  if ($type == 'page') $type = "basicpage";
+  $alias = to_id(drupal_get_path_alias('node/' . $vars['node']->nid));
+  $vars['theme_hook_suggestions'][] = "node__" . $alias;
 }
 
 /**
