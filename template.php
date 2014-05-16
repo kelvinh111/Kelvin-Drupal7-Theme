@@ -1,7 +1,7 @@
 <?php
 
-require_once("phpQuery-onefile.php");
-require_once("kelvin_helper.php");
+require_once(drupal_get_path('theme', 'kelvin') . "/phpQuery-onefile.php");
+require_once(drupal_get_path('theme', 'kelvin') . "/kelvin_helper.php");
 
 /**
  * Implements template_preprocess_html().

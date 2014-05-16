@@ -4,18 +4,15 @@ require_once(drupal_get_path('theme', 'kelvin') . "/phpQuery-onefile.php");
 require_once(drupal_get_path('theme', 'kelvin') . "/kelvin_helper.php");
 
 function custom_menu() {
-  $items['test'] = array(
-    'page callback' => 'custom_test_callback',
+  $items['home'] = array(
+    'page callback' => 'custom_home_callback',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
   return $items;
 }
 
-/**
- * return theme() function to pass all vars to hook_theme() below
- */
-function custom_test_callback() {
+function custom_home_callback() {
   return "";
 }
 
