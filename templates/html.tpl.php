@@ -49,7 +49,7 @@
     $libraries_path = "/" . libraries_get_path('mediaelement');
     print $styles;
     ?>
-    <script src="<?php echo $theme_path; ?>/js/modernizr-2.6.2.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.1/modernizr.min.js"></script>
     <link href="<?php echo $theme_path; ?>/css/all.css" rel='stylesheet' type='text/css'>
   </head>
   <body class="<?php print $classes; ?>" <?php print $attributes; ?>>
@@ -65,11 +65,9 @@
     print $page_bottom;
     ?>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="<?php echo $theme_path; ?>/js/jquery-1.10.2.min.js"><\/script>')</script>
-    <script src="<?php echo $theme_path; ?>/js/jquery-migrate-1.2.1.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <?php print $scripts; ?>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
     <script src="<?php echo $theme_path; ?>/js/cssrefresh.js"></script> 
     <script src="<?php echo $theme_path; ?>/js/hasChanged.js"></script>
     <script src="<?php echo $theme_path; ?>/js/script.js"></script>
