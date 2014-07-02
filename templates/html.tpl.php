@@ -68,8 +68,7 @@
     <?php print $scripts; ?>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
-    <script src="<?php echo $theme_path; ?>/js/cssrefresh.js"></script> 
-    <script src="<?php echo $theme_path; ?>/js/hasChanged.js"></script>
-    <script src="<?php echo $theme_path; ?>/js/script.js"></script>
+    <script src="//192.168.1.6:13579/livereload.js"></script>
+    <script src="<?php echo $theme_path; ?>/js/compiled/all.min.js"></script>
   </body>
 </html>

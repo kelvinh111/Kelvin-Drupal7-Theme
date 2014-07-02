@@ -1,8 +1,5 @@
 (function($) {
-  $(window).load(function() {
 
-    "Use strict";
-    
+  console.log(0);
 
-  });
 })(jQuery);
